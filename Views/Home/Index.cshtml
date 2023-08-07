@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Ипотечный Калькулятор";
+}
+
+<body>
+    @*Головная часть*@
+    <div class="header">
+        <p class="logo">Ипотечный Калькулятор</p>
+    </div>
+
+    @*Часть основного блока, обведенного черной границей*@
+    <div class="block">
+        @*Обозначение, что рассчет ведется по стоимости недвижимости*@
+        <h3 class="card-title">По стоимости недвижимости</h3>
+
+        @*Форма для заполнения input и output*@
+        <form oninput="out1.value= ((parseFloat(AnInitialFee.value) / parseFloat(realEstateValue.value)) * 100).toFixed(2) >= 0 ? ((parseFloat(AnInitialFee.value) / parseFloat(realEstateValue.value)) * 100).toFixed(2) : 0,
+            out2.value= (parseFloat(realEstateValue.value) - parseFloat(AnInitialFee.value)).toFixed(2) > 0 ? (parseFloat(realEstateValue.value) - parseFloat(AnInitialFee.value)).toFixed(2) : 0">
+
+            @*Первый блок ввода: Стоимость недвижимости с input*@
+            <div class="text-field">
+                <label class="text-field__label">Стоимость недвижимости:</label>
+                <input class="text-field__input input1" type="number" name="realEstateValue" id="RealEstateValue" placeholder="0"
+                       oninput="up(this)" onkeydown="return event.keyCode !== 187 && event.keyCode !== 189 && event.keyCode !== 69">
+                <label class="text-field__label">₽</label>
+            </div>
+
+            @*Второй блок ввода: Первоначальный взнос(в рублях) с input*@
+            <div class="text-field">
+                <label class="text-field__label">Первоначальный взнос:</label>
+                <input class="text-field__input input2" type="number" name="anInitialFee" id="AnInitialFee" placeholder="0"
+                       oninput="up(this)" onkeydown="return event.keyCode !== 187 && event.keyCode !== 189 && event.keyCode !== 69">
+                <label class="text-field__label">₽</label>
+            </div>
+
+            @*Третий блок, который автоматически заполняется при введенных первых двух блоках: Первоначальный взнос в процентах*@
+            <div>
+                <p class="text-field__label">
+                    Первоначальный взнос в процентах: <output name="out1" id="PFirstV">0</output>
+                    <label class="text-field__label">%</label>
+            </div>
+
+            @*Четвертый блок, который автоматически заполняется при введенных первых двух блоках: Сумма кредита*@
+            <div>
+                <p class="text-field__label">
+                    Сумма кредита: <output name="out2" id="CredSum">0</output>
+                    <label class="text-field__label"> ₽</label>
+            </div>
+
+        </form>
+
+        @*Блок для ввода срока кредита в виде input с type: text, в отличии от остальных(где было number).
+        Стоит ограничение по вводу: можно ввести только 2 цифры*@
+        <div class="text-field">
+            <label class="text-field__label" for="CreditTerm">Срок кредита:</label>
+            <input class="text-field__input_term" type="text" pattern=" 0+\.[0-9]*[1-9][0-9]*$" name="CreditTerm"
+                   id="CreditTerm" placeholder="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                   maxlength="2">
+            <label class="text-field__label">полных лет</label>
+        </div>
+
+        @*Выпадающее поле с выбором процентной ставки. По умолчанию стоит ставка 5.4%*@
+        <div class="text-field">
+            <label class="text-field__label">Процентная ставка:</label>
+            <select class="text-field__input_rate" name="InterestRate" id="interestRate">
+                <option>5.4</option>
+                <option>10.3</option>
+                <option>10.6</option>
+                <option>10.9</option>
+                <option>11.7</option>
+            </select>
+            <label class="text-field__label">%</label>
+        </div>
+
+        @*Кнопка для рассчета ежемесячного платежа, которая сначала проверяет валидность введенных данных*@
+        <button class="text-field__label button">Рассчитать</button>
+
+        @*Невидимый блок с ошибками, который появляется при ошибке заполнения данных с описанием ошибки*@
+        <div class="invis_er text-field__label" id="invis_er"></div>
+
+        @*Невидимый нижний блок с данными о ежемесячном платеже, который открывается при положительной проверке валидности данных*@
+        <div class="DownBlock" id="invis">
+            <label class="text-field__label">Ежемесячный платеж:</label>
+            <label class="result text-field__label"></label>
+            <label class="text-field__label"> ₽</label>
+        </div>
+    </div>
+
+    @*Подключение скрипта script.js*@
+    <script src="~/js/script.js"></script>
+
+    @*<script src="~/js/fetch.js"></script>*@
+
+    @*Подключение скрипта для ввода максимум двух цифр после запятой в первых двух input*@
+    <script>
+        function up(e) {
+            if (e.value.indexOf(".") != '-1') {
+                e.value = e.value.substring(0, e.value.indexOf(".") + 3);
+            }
+        }
+    </script>
+
+    @*Подключение скрипта для того, чтобы разрешить вводить только цифры в input*@
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+</body>

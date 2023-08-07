@@ -1,0 +1,154 @@
+body {
+    background-color: white;
+    color: black;
+    position: relative;
+    max-width: 540px;
+    min-height: 100%;
+    margin: 0 auto;
+    font-family: 'Suisse';
+    box-sizing: border-box;
+    padding: 36px;
+}
+
+.header {
+    align-items: baseline;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.logo {
+    font-weight: 200;
+    font-size: 34px;
+    margin: 0 auto 6px;
+    font: small-caps bold 24px/1 sans-serif;
+}
+
+.block {
+    display: grid;
+    align-items: start;
+    position: relative;
+    left: -150px;
+    width: 780px;
+    margin: 50px auto;
+    border: 1px solid black;
+    padding: 7px 13px 0;
+    box-shadow: 4px 4px 0 black;
+    background-color: #dfdfdf;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.card-text {
+    font-size: 21px;
+}
+
+.card-title {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-weight: 200;
+    padding: 2px 0;
+    font-size: 20px;
+    text-align: left;
+    text-decoration: underline;
+    font-family: serif;
+}
+
+.text-field {
+    margin-bottom: 1px;
+    display: inline-block;
+}
+
+.text-field__label {
+    margin-bottom: 5px;
+    font-size: 21px;
+}
+
+.text-field__input,
+.text-field__input_term,
+.text-field__input_rate {
+    width: 200px;
+    height: 25px;
+    padding: 3px 3px;
+    margin: 5px auto 5px;
+    font-family: inherit;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.text-field__input_term {
+    width: 49px;
+}
+
+.text-field__input_rate {
+    width: 70px;
+    margin: 7px auto 7px;
+    height: 30px;
+    padding: 4px 4px;
+}
+
+.button {
+    margin: 10% auto;
+    font-size: 23px;
+}
+
+button {
+    width: 9em;
+    height: 3em;
+    border-radius: 15em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 6px 6px 12px #c5c5c5, -3px -3px 6px #ffffff;
+}
+
+button::before {
+    content: '';
+    width: 0;
+    height: 3em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+
+button:hover::before {
+    width: 9em;
+}
+
+.invis_er {
+    visibility: hidden;
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-size: 19px;
+    color: rgb(122, 16, 16);
+    text-align: center;
+    cursor: pointer;
+    text-align-last: center;
+    transition: opacity 0.2s;
+    position: static;
+}
+
+.DownBlock {
+    visibility: hidden;
+    margin-top: 0;
+    margin-bottom: 50px;
+}
